@@ -1,13 +1,11 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { db } from "../../firebase";
+import { db } from "../lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 export default function PublicWall() {
-  const searchParams = useSearchParams();
-  const tag = searchParams.get("tag") || "";
+  const tag: string = "";
 
  const [posts, setPosts] = useState<any[]>([]);
 
@@ -26,11 +24,7 @@ export default function PublicWall() {
   loadPosts();
 }, []);
 
- const filteredPosts = posts.filter((post) => {
-  const postTag = post.tag || post.hashtag || "";
-
-  return postTag.toLowerCase() === tag.toLowerCase();
-});
+ const filteredPosts = posts;
   return (
     <main
       style={{
